@@ -31,8 +31,16 @@ if (session_status() === PHP_SESSION_NONE) {
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="../view/profile.php">Tài khoản của tôi</a></li>
-                            <li><hr class="dropdown-divider"></li>
+
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1): ?>
+                                <li><a class="dropdown-item" href="../admin/view/postManagerView.php">Quản lý admin</a></li>
+                            <?php endif; ?>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item text-danger" href="../controller/logout.php">Đăng xuất</a></li>
+
                         </ul>
                     </div>
                 <?php else : ?>

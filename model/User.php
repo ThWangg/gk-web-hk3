@@ -29,6 +29,7 @@ class User
                 // lưu thông tin voo session
                 $_SESSION['username'] = $user['name'];
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
 
                 return true;
             }
@@ -65,6 +66,12 @@ class User
      public function updateUserInfo($email, $name, $phonenumber, $address) {
         $stmt = $this->conn->prepare("UPDATE user SET name=?, phonenumber=?, address=? WHERE email=?");
         $stmt->bind_param("ssss", $name, $phonenumber, $address, $email);
+        return $stmt->execute();
+    }
+
+    public function updateUserInfoWithRole($email, $name, $phonenumber, $address, $role) {
+        $stmt = $this->conn->prepare("UPDATE user SET name=?, phonenumber=?, address=?, role=? WHERE email=?");
+        $stmt->bind_param("sssss", $name, $phonenumber, $address, $role, $email);
         return $stmt->execute();
     }
 

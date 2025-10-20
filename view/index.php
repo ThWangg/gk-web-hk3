@@ -83,6 +83,53 @@
             </div>
         </div>
     </section>
+
+    <?php
+    require_once '../model/post.php';
+    $postModel = new Post();
+    $posts = $postModel->getAllPosts();
+    ?>
+
+    <section class="container my-5">
+        <h2 class="fw-bold mb-4 text-center text-uppercase">All Posts</h2>
+
+        <?php if (empty($posts)): ?>
+            <div class="text-center text-muted">No posts available.</div>
+        <?php else: ?>
+            <div class="row justify-content-center">
+                <?php foreach ($posts as $post): ?>
+                    <div class="col-md-8 mb-4">
+                        <div class="p-3 border bg-light">
+                            <a href="post.php?id=<?php echo $post['id']; ?>" class="text-decoration-none">
+                                <div class="d-flex">
+                                    <img src="../uploads/<?php echo htmlspecialchars($post['image'] ?? 'default.jpg'); ?>"
+                                        alt="Post image"
+                                        style="width: 180px; height: 150px; object-fit: cover; margin-right: 15px;">
+                                    <div>
+                                        <h4 class="text-primary fw-bold mb-2">
+                                            <?php echo htmlspecialchars($post['title']); ?>
+                                        </h4>
+                                        <p class="text-muted small mb-2">
+                                            <?php
+                                            echo !empty($post['content'])
+                                                ? mb_strimwidth(htmlspecialchars($post['content']), 0, 150, '...')
+                                                : '<i>No content available.</i>';
+                                            ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="mt-3 mb-2">
+                            <p class="text-end text-muted small mb-0">
+                                posted by <strong><?php echo htmlspecialchars($post['author'] ?? 'Admin'); ?></strong>
+                            </p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </section>
+
 </body>
 
 </html>
