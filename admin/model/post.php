@@ -1,6 +1,5 @@
 <?php
-// model/post.php
-require_once("../VietNamTourist/model/connectDb.php");
+require_once("/Tools/BaiTapHTML/web-hk3/gk/model/connectDb.php");
 
 class Post
 {
@@ -9,7 +8,7 @@ class Post
 
     public function __construct()
     {
-        $db = new connectDb(); // nếu connectDb cần tham số, chỉnh ở đây
+        $db = new connectDb();
         $this->conn = $db->connect();
         if ($this->conn) {
             $this->conn->set_charset('utf8mb4');
@@ -24,9 +23,7 @@ class Post
         return $this->conn ? $this->conn->error : 'No DB connection';
     }
 
-    // ----------------------------
-    // READ
-    // ----------------------------
+
     public function getAll()
     {
         $sql = "SELECT * FROM post ORDER BY id DESC";
@@ -66,9 +63,6 @@ class Post
         return $this->getById($id);
     }
 
-    // ----------------------------
-    // CREATE
-    // ----------------------------
     public function insert($title, $image, $contents, $author)
     {
         $this->lastError = '';
@@ -89,10 +83,6 @@ class Post
         return $this->insert($title, $image, $contents, $author);
     }
 
-    // ----------------------------
-    // UPDATE
-    // ----------------------------
-    // signature: update($id, $title, $image, $contents, $author)
     public function update($id, $title, $image, $contents, $author)
     {
         $this->lastError = '';
@@ -113,9 +103,7 @@ class Post
         return $this->update($id, $title, $image, $contents, $author);
     }
 
-    // ----------------------------
-    // DELETE
-    // ----------------------------
+
     public function delete($id)
     {
         $this->lastError = '';

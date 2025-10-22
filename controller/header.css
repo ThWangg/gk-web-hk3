@@ -1,0 +1,76 @@
+nav {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background: linear-gradient(135deg, #acf5d8, #bbc1bf, #57c6e1, #b49fda, #7ac5d8);
+  background-size: 400% 400%;
+  /* để animation gradient mượt hơn */
+  animation: gradientBG 15s ease infinite;
+  position: fixed !important;
+  z-index: 500;
+  width: 100%;
+}
+
+nav.navbar li {
+  font-weight: bold;
+}
+
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+nav .nav-item .nav-link {
+  color: rgb(0, 0, 0);
+}
+
+nav h1 {
+  font-family: 'Pacifico', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* .dropdown-menu {
+  z-index: 1300 !important;
+  position: absolute;
+} */
+
+/* Đặt style chung cho nav-link */
+.navbar-nav .nav-link {
+  position: relative;
+  padding-bottom: 5px;
+  /* khoảng trống cho gạch chân */
+  transition: color 0.3s ease;
+}
+
+/* Gạch chân ẩn mặc định */
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+  /* màu gạch chân */
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+/* Hover: gạch chân mở rộng từ giữa ra */
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Khi item active: gạch chân luôn hiển thị */
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}

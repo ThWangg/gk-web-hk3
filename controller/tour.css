@@ -1,0 +1,41 @@
+.tour-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.tour-card img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  height: 200px;
+}
+
+.tour-card:hover img {
+  transform: scale(1.05);
+}
+
+.tour-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  color: #fff;
+}
+
+.tour-title {
+  font-weight: bold;
+  color: #f08a5d;
+  /* màu cam */
+}
+
+.tour-section {
+  padding-top: 50px;
+  /* khoảng cách từ header xuống section */
+}

@@ -38,9 +38,8 @@ $page = $_GET['page'] ?? 'post_list';
                 </div>
 
                 <div class="nav flex-column nav-pills">
-                    <a class="nav-link <?= $page === 'post_new' ? 'active' : 'text-white' ?>" href="?page=post_new"><i class="fa fa-plus-square me-2"></i>Bài viết mới</a>
                     <a class="nav-link <?= $page === 'post_list' ? 'active' : 'text-white' ?>" href="?page=post_list"><i class="fa fa-tasks me-2"></i>Quản lý bài viết</a>
-                    <a class="nav-link <?= $page === 'travel_list' ? 'active' : 'text-white' ?>" href="?page=travel_list"><i class="fa fa-location-arrow me-2"></i>Quản lý địa điểm</a>
+                    <a class="nav-link <?= $page === 'tour_list' ? 'active' : 'text-white' ?>" href="?page=tour_list"><i class="fa fa-location-arrow me-2"></i>Quản lý địa điểm</a>
                     <a class="nav-link <?= $page === 'comment_list' ? 'active' : 'text-white' ?>" href="?page=comment_list"><i class="fa fa-comment me-2"></i>Quản lý bình luận</a>
                     <a class="nav-link <?= $page === 'user_list' ? 'active' : 'text-white' ?>" href="?page=user_list"><i class="fa fa-user-cog me-2"></i>Quản lý user</a>
 
@@ -60,23 +59,41 @@ $page = $_GET['page'] ?? 'post_list';
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <?php
-                        // Router: include controller files (controllers reside in admin/controller/)
-                        $ctrl_base = __DIR__ . '/controller/';
                         switch ($page) {
-                            case 'post_new':
-                                include $ctrl_base . 'post_new.php';
+                            // --- POST ---
+                            case 'post_add':
+                                include __DIR__ . '/controller/post/add.php';
                                 break;
                             case 'post_edit':
-                                include $ctrl_base . 'post_edit.php';
+                                include __DIR__ . '/controller/post/edit.php';
                                 break;
                             case 'post_delete':
-                                include $ctrl_base . 'post_delete.php';
+                                include __DIR__ . '/controller/post/delete.php';
                                 break;
                             case 'post_list':
+                                include __DIR__ . '/controller/post/list.php';
+                                break;
+
+                            // --- tour / TOUR ---
+                            case 'tour_add':
+                                include __DIR__ . '/controller/tour/add.php';
+                                break;
+                            case 'tour_edit':
+                                include __DIR__ . '/controller/tour/edit.php';
+                                break;
+                            case 'tour_delete':
+                                include __DIR__ . '/controller/tour/delete.php';
+                                break;
+                            case 'tour_list':
+                                include __DIR__ . '/controller/tour/list.php';
+                                break;
+
+                            // --- Mặc định ---
                             default:
-                                include $ctrl_base . 'post_list.php';
+                                include __DIR__ . '/controller/post/list.php';
                                 break;
                         }
+
                         ?>
                     </div>
                 </div>
